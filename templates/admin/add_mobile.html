@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title mb-4">Add New Mobile</h2>
+                <form method="post" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="brand" class="form-label">Brand</label>
+                        <input type="text" class="form-control" id="brand" name="brand" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="model_year" class="form-label">Model Year</label>
+                        <input type="number" class="form-control" id="model_year" name="model_year" min="2000" max="2025">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="condition" class="form-label">Condition</label>
+                        <select class="form-select" id="condition" name="condition" required>
+                            <option value="">Select condition</option>
+                            {% for condition in conditions %}
+                            <option value="{{ condition }}">{{ condition }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="price" class="form-label">Price</label>
+                        <input type="number" class="form-control" id="price" name="price" step="0.01" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="specs" class="form-label">Specifications</label>
+                        <textarea class="form-control" id="specs" name="specs" rows="5" required></textarea>
+                        <small class="text-muted">Enter each specification on a new line</small>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="images" class="form-label">Images</label>
+                        <input type="file" class="form-control" id="images" name="images" multiple accept="image/*" required>
+                        <small class="text-muted">You can select multiple images</small>
+                    </div>
+                    
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary">Add Mobile</button>
+                        <a href="{{ url_for('admin_dashboard') }}" class="btn btn-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
